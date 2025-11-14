@@ -49,7 +49,7 @@ class player(pygame.sprite.Sprite):
         self.playerMomentum = [0, 0]
         self.playerLocation = location
         self.playerNumber = playerNumber
-        self.image.append(pygame.image.load('player1right').convert_alpha())
+        self.image.append(pygame.image.load('greeny.png').convert_alpha())
         self.image.append(pygame.image.load('greeny.png').convert_alpha())
         self.rect = self.image[0].get_rect()
         self.rect.left,self.rect.top = location
