@@ -1,4 +1,5 @@
 import pygame
+import random
 pygame.init
 
 # World Vars
@@ -75,15 +76,16 @@ def displaySquares(squares):
 class player(pygame.sprite.Sprite):
     def __init__(self,location,playerNumber,images):
         pygame.sprite.Sprite.__init__(self)
+        self.anamationState = 0
         self.image = []
         self.playerMomentum = [0, 0]
         self.playerLocation = location
         self.playerNumber = playerNumber
-        self.image.append(pygame.image.load(images[0]).convert_alpha())
-        self.image.append(pygame.image.load(images[1]).convert_alpha())
+        for image in images :
+            self.image.append(pygame.image.load(image).convert_alpha())
         self.rect = self.image[0].get_rect()
         self.rect.left,self.rect.top = location
-        self.anamationFrame = 0
+        self.frames = 0
     def playerMovment(self):
         keys = pygame.key.get_pressed()
 
@@ -135,13 +137,20 @@ class player(pygame.sprite.Sprite):
         self.playerLocation[1] += self.playerMomentum[1]
         self.rect.left,self.rect.top = self.playerLocation
     def Draw(self, screen):
-        if self.anamationFrame > 60:
-            self.anamationFrame = 0
-        self.anamationFrame += 1
-        cerentFrame = 0
-        if self.anamationFrame > 30:
-            cerentFrame = 1
-        screen.blit(self.image[cerentFrame],self.rect)    
+        if self.frames >= 60:
+            self.frames = 0
+        if self.frames < 30:
+            if self.playerMomentum[0] > 0:
+                self.anamationState = 0
+            if self.playerMomentum[0] < 0:
+                self.anamationState = 1
+        else:
+            if self.playerMomentum[0] > 0:
+                self.anamationState = 2
+            if self.playerMomentum[0] < 0:
+                self.anamationState = 3
+        self.frames += 1
+        screen.blit(self.image[self.anamationState],self.rect)    
     def score(self):
         points = 0
         for row in background:
@@ -160,8 +169,8 @@ def checkGameDone():
 clock = pygame.time.Clock()
 playerLocation = [500, 500]
 # Player Updates
-player1 = player([500, 500], 1, ['images/purple_galixy_cat_left.png', 'images/purple_galixy_cat_right.png'])
-player2 = player([500, 500], 2, ['images/green_galixy_cat_right.png', 'images/green_galixy_cat_left.png'])
+player1 = player([500, 500], 1, ['images/purple_galixy_cat_right_64.png', 'images/purple_galixy_cat_left_64.png', 'images/purple_galixy_cat_right_64_up3.png', 'images/purple_galixy_cat_rleft_64_up3.png'])
+player2 = player([500, 500], 2, ['images/green_galixy_cat_right_50.png', 'images/green_galixy_cat_left_50.png','images/green_galixy_cat_right_64_up3.png', 'images/green_galixy_cat_left_64_up3.png'])
 test = BackroundSquare([3, 4])
 def paint(player):
     x = int((player.playerLocation[0] + 15)/50)
