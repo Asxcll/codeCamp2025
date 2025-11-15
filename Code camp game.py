@@ -8,7 +8,9 @@ screenD = [1000, 800]
 screen = pygame.display.set_mode((screenD))
 friction = 0.08
 fonts = pygame.font.Font(None, 50)
-
+winFonts = pygame.font.Font(None, 125)
+screenHeight = 16
+screenWidth = 20
 
 # Squares
 
@@ -31,17 +33,31 @@ squares = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ]
+background = []
+def initBackground() :
+    for i in range(screenHeight):
+        row = []
+        for j in range(screenWidth):
+            row.append(BackroundSquare((i, j)))
+        background.append(row)
+
+def drawBackground():
+    for row in background:
+        for item in row:
+           item.draw()
+
 class BackroundSquare():
     def __init__(self,location):
         self.image = []
-        self.image.append(pygame.image.load('images/black_backround.png').convert_alpha())
-        self.image.append(pygame.image.load('images/purple_galixy.png').convert_alpha())
-        self.image.append(pygame.image.load('images/green_galixy.png').convert_alpha())
+        self.image.append(pygame.image.load('images/black_backround50.png').convert_alpha())
+        self.image.append(pygame.image.load('images/purple_galixy50.png').convert_alpha())
+        self.image.append(pygame.image.load('images/green_galixy50.png').convert_alpha())
         self.rect = (location[1] * 50, location[0] * 50, 50, 50)
         self.imageType = 0
+
     def draw(self):
         screen.blit(self.image[self.imageType],self.rect)
-
+initBackground()
 def displaySquares(squares):
     for y,row in  enumerate(squares):
         for x, col in  enumerate(row):
@@ -128,14 +144,18 @@ class player(pygame.sprite.Sprite):
         screen.blit(self.image[cerentFrame],self.rect)    
     def score(self):
         points = 0
-        for row in squares:
+        for row in background:
             for square in row:
-                if square == self.playerNumber:
+                if square.imageType == self.playerNumber:
                     points += 1
         return points
                 
-
-
+def checkGameDone():
+    for row in background:
+        for square in row:
+            if square.imageType == 0:
+                return False
+    return True
 
 clock = pygame.time.Clock()
 playerLocation = [500, 500]
@@ -146,11 +166,11 @@ test = BackroundSquare([3, 4])
 def paint(player):
     x = int((player.playerLocation[0] + 15)/50)
     y = int((player.playerLocation[1] + 15)/50)
-    if x > screenD[0] - 40:
-        x = screenD[0] - 40
-    if y > screenD[1] - 40:
-        y = screenD[1] - 40
-    squares[y][x] = player.playerNumber
+    if x > screenWidth - 1:
+        x = screenWidth - 1
+    if y > screenHeight - 1:
+        y = screenHeight - 1
+    background[y][x].imageType = player.playerNumber
 
 
 while run:
@@ -158,11 +178,15 @@ while run:
     # Frame Rate Stuff
     clock.tick(60)
 
+    if checkGameDone():
+        run = False
+
     # Saving inputs
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
     keys = pygame.key.get_pressed()
+
 
 
     player1.playerMovment()
@@ -177,9 +201,23 @@ while run:
     # Display 
     screen.fill((100, 100, 100))
     displaySquares(squares)
+    drawBackground()    
     player1.Draw(screen)
     player2.Draw(screen)
     screen.blit(text1, (20, 10))
     screen.blit(text2, (screenD[0] - 100 ,10))
-    test.draw()
-    pygame.display.flip()
+
+    pygame.display.flip()   
+
+screen.fill((100, 100, 100))
+
+if player2score > player1score:
+    winText = winFonts.render('Player two wins!', True, (255, 255, 255), None)
+elif player1score > player2score:
+    winText = winFonts.render('Player one wins!', True, (255, 255, 255), None)
+else:
+    winText = winFonts.render('tie :(', True, (255, 255, 255), None)
+
+screen.blit(winText,(100, 100))
+pygame.display.flip()   
+pygame.time.wait(6000)
