@@ -11,24 +11,36 @@ fonts = pygame.font.Font(None, 50)
 
 
 # Squares
+
 squares = [
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ]
+class BackroundSquare():
+    def __init__(self,location):
+        self.image = []
+        self.image.append(pygame.image.load('images/black_backround.png').convert_alpha())
+        self.image.append(pygame.image.load('images/purple_galixy.png').convert_alpha())
+        self.image.append(pygame.image.load('images/green_galixy.png').convert_alpha())
+        self.rect = (location[1] * 50, location[0] * 50, 50, 50)
+        self.imageType = 0
+    def draw(self):
+        screen.blit(self.image[self.imageType],self.rect)
 
 def displaySquares(squares):
     for y,row in  enumerate(squares):
@@ -96,11 +108,11 @@ class player(pygame.sprite.Sprite):
         if self.playerLocation[1] < 0:
             self.playerLocation[1] = 1
             self.playerMomentum[1] *= -0.7
-        if self.playerLocation[0] > screenD[0] - 200:
-            self.playerLocation[0] = screenD[0] - 200
+        if self.playerLocation[0] > screenD[0] - 40:
+            self.playerLocation[0] = screenD[0] - 40
             self.playerMomentum[0] *= -0.7
-        if self.playerLocation[1] > screenD[1] - 200:
-            self.playerLocation[1] = screenD[1] - 200
+        if self.playerLocation[1] > screenD[1] - 40:
+            self.playerLocation[1] = screenD[1] - 40
             self.playerMomentum[1] *= -0.7
 
         self.playerLocation[0] += self.playerMomentum[0]
@@ -128,12 +140,16 @@ class player(pygame.sprite.Sprite):
 clock = pygame.time.Clock()
 playerLocation = [500, 500]
 # Player Updates
-player1 = player([500, 500], 1, ['images/greeny.png', 'images/greeny.png'])
-player2 = player([500, 500], 2, ['images/greeny.png', 'images/greeny.png'])
-
+player1 = player([500, 500], 1, ['images/purple_galixy_cat_left.png', 'images/purple_galixy_cat_right.png'])
+player2 = player([500, 500], 2, ['images/green_galixy_cat_right.png', 'images/green_galixy_cat_left.png'])
+test = BackroundSquare([3, 4])
 def paint(player):
-    x = int((player.playerLocation[0]+25)/50)
-    y = int((player.playerLocation[1]+25)/50)
+    x = int((player.playerLocation[0] + 15)/50)
+    y = int((player.playerLocation[1] + 15)/50)
+    if x > screenD[0] - 40:
+        x = screenD[0] - 40
+    if y > screenD[1] - 40:
+        y = screenD[1] - 40
     squares[y][x] = player.playerNumber
 
 
@@ -165,4 +181,5 @@ while run:
     player2.Draw(screen)
     screen.blit(text1, (20, 10))
     screen.blit(text2, (screenD[0] - 100 ,10))
+    test.draw()
     pygame.display.flip()
